@@ -3,8 +3,8 @@
  * 构建play_list, 手动or自动更新
  */
 
-include '163fm.php';
-include 'config.php';
+require ("163fm.php");
+require ("config.php");
 
 $music_infos = [];
 

@@ -1,6 +1,6 @@
 <?php
 
-include "163fm.php";
+require ("163fm.php");
 
 /**
  * 解析歌词
