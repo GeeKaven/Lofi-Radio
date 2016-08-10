@@ -27,7 +27,8 @@ function build_lrc($music_id)
  * @return music_id
  */
 function rand_id($music_ids) {
-
+    $r_index = rand(0, count($music_ids) - 1);
+    return $music_ids[$r_index];
 }
 
 
@@ -36,8 +37,8 @@ $path = "json/" . $fm . ".json";
 
 $music_ids = json_decode(file_get_contents($path), true);
 
-// $rand_id = rand_id($music_ids);
-$rand_id = 26215437;
+$rand_id = rand_id($music_ids);
+// $rand_id = 26215437;
 
 $play_info = [];
 
