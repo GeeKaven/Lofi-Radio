@@ -1,4 +1,9 @@
 <?php
+/**
+ * 构建向网易云音乐请求
+ * @param  $url
+ * @return content
+ */
 function curl_get($url)
 {
     # code...

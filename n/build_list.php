@@ -1,6 +1,6 @@
 <?php
 /**
- * 构建play_list
+ * 构建play_list, 手动or自动更新
  */
 
 include '163fm.php';

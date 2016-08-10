@@ -4,8 +4,8 @@ include "163fm.php";
 
 /**
  * 解析歌词
- * @param  [type] $music_id [description]
- * @return [type]           [description]
+ * @param  $music_id
+ * @return lrc
  */
 function build_lrc($music_id)
 {
@@ -38,7 +38,6 @@ $path = "json/" . $fm . ".json";
 $music_ids = json_decode(file_get_contents($path), true);
 
 $rand_id = rand_id($music_ids);
-// $rand_id = 26215437;
 
 $play_info = [];
 
