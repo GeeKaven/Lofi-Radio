@@ -38,6 +38,7 @@ $path = "json/" . $fm . ".json";
 $music_ids = json_decode(file_get_contents($path), true);
 
 $rand_id = rand_id($music_ids);
+// $rand_id = 794031;
 
 $play_info = [];
 
@@ -47,13 +48,13 @@ $play_info["id"] = $rand_id;
 $play_info["name"] = $song["name"];
 $play_info["duration"] = $song["duration"];
 $play_info["mp3Url"] = $song["mp3Url"];
+$play_info["mp3Url"] = str_replace("http://m", "http://p", $play_info["mp3Url"]);
 $play_info["artists"] = [];
 foreach ($song["artists"] as $v) {
     array_push($play_info["artists"], $v["name"]);
 }
 $play_info["album_url"] = $song["album"]["picUrl"];
 $play_info["lrc"] = build_lrc($rand_id);
-
 
 echo json_encode($play_info);
 ?>
