@@ -1,8 +1,10 @@
 "use strict"
 
-var $ = document.querySelector;
-var $$ = document.querySelectorAll;
-var nAudio = document.getElementById("player");
+var nAudio = document.querySelector("#song");
+var cover = document.querySelector('#cover');
+var play = document.querySelector("#play");
+var next = document.querySelector('#next');
+
 
 var _get = function (url, callback) {
     var xhr = new XMLHttpRequest();
@@ -21,35 +23,54 @@ var _get = function (url, callback) {
 var load = function () {
     _get("n/player.php", function (data) {
         var song = JSON.parse(data);
-        if (song.mp3Url.length === 0) {
+        if (song.mp3Url === "") {
             //弹出提示， 然后下一首。
             next();
         }
+        document.querySelector("#cover img").setAttribute('src', song.album_url);
+        document.querySelector("#info>h1").innerHTML = song.name;
+        document.querySelector("#info>p").innerHTML = song.artists.join("/");
         nAudio.setAttribute('src', song.mp3Url);
-        nAudio.play();
+        toggle();
     })
 }
 
-var next = function () {
+var next_music = function () {
     load();
 }
 
 var toggle = function () {
     if (nAudio.paused) {
         nAudio.play();
+        play.innerHTML = "暂停";
     } else {
         nAudio.pause();
+        play.innerHTML = "播放";
     }
 }
 
+var reset_cover = function () {
+    var cover_height = cover.offsetHeight + "px";
+    cover.setAttribute("style","width:" + cover_height);
+}
+
 nAudio.addEventListener('ended', function(e) {
-    next();
+    next_music();
 });
 
 nAudio.addEventListener('timeupdate', function(e) {
     //播放时间处理， 进度条，歌词...
 });
 
+play.addEventListener('click', function(e) {
+    toggle();
+})
+
+next.addEventListener('click', function(e) {
+    next_music();
+})
+
 window.onload = function () {
+    reset_cover();
     load();
 }

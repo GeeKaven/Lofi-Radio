@@ -1,0 +1,39 @@
+html, body {
+    width: 100%;
+    height: 100%;
+}
+
+#wapper {
+    width: 100%;
+    height: 100%;
+}
+
+#player {
+    width: 100%;
+    height: 80%;
+    text-align: center;
+    background-color: blue;
+    transform: translateY(10%);
+}
+
+#cover {
+    height: 50%;
+    margin: 0 auto;
+}
+
+#cover img {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    z-index: 2;
+}
+
+#lrc {
+    width: 100%;
+    height: 40%;
+    background-color: pink;
+}
+
+#action {
+    margin: auto;
+}
