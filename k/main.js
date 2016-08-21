@@ -4,6 +4,7 @@ var nAudio = document.querySelector("#song");
 var cover = document.querySelector('#cover');
 var play = document.querySelector("#play");
 var next = document.querySelector('#next');
+var played = document.querySelector('#played');
 
 
 var _get = function (url, callback) {
@@ -32,6 +33,7 @@ var load = function () {
         document.querySelector("#info>p").innerHTML = song.artists.join("/");
         nAudio.setAttribute('src', song.mp3Url);
         toggle();
+        progress();
     })
 }
 
@@ -47,6 +49,13 @@ var toggle = function () {
         nAudio.pause();
         play.innerHTML = "播放";
     }
+}
+
+var progress = function() {
+    setInterval(function() {
+        var rate = (nAudio.currentTime / nAudio.duration) * 100;
+        played.setAttribute("style", "width:" + rate + "%");
+    }, 1000);
 }
 
 var reset_cover = function () {

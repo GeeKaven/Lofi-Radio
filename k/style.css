@@ -47,3 +47,31 @@ html, body {
 #action {
     margin: auto;
 }
+
+.progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: .5em;
+}
+
+.progress div {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    min-width: 4px;
+    max-width: 100%;
+}
+
+#loaded {
+    border-radius: 5px;
+    background: rgba(120, 120, 120, 0.1);
+}
+
+#played {
+    box-shadow: -1px -1px 0 rgba(0, 0, 255, 0.2) inset;
+    border-radius: 10em;
+    background: red;
+}
