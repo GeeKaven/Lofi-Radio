@@ -33,7 +33,6 @@ var load = function () {
         document.querySelector("#info>p").innerHTML = song.artists.join("/");
         nAudio.setAttribute('src', song.mp3Url);
         toggle();
-        progress();
     })
 }
 
@@ -51,13 +50,6 @@ var toggle = function () {
     }
 }
 
-var progress = function() {
-    setInterval(function() {
-        var rate = (nAudio.currentTime / nAudio.duration) * 100;
-        played.setAttribute("style", "width:" + rate + "%");
-    }, 1000);
-}
-
 var reset_cover = function () {
     var cover_height = cover.offsetHeight + "px";
     cover.setAttribute("style","width:" + cover_height);
@@ -69,6 +61,8 @@ nAudio.addEventListener('ended', function(e) {
 
 nAudio.addEventListener('timeupdate', function(e) {
     //播放时间处理， 进度条，歌词...
+    var rate = (nAudio.currentTime / nAudio.duration) * 100;
+    played.setAttribute("style", "width:" + rate + "%");
 });
 
 play.addEventListener('click', function(e) {
