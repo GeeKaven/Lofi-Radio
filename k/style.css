@@ -1,6 +1,7 @@
 html, body {
     width: 100%;
     height: 100%;
+    font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
 }
 
 #wapper {
@@ -10,15 +11,15 @@ html, body {
 
 #player {
     width: 100%;
-    height: 80%;
+    height: 70%;
     text-align: center;
-    background-color: blue;
-    transform: translateY(10%);
+    transform: translateY(15%);
 }
 
 #cover {
     height: 50%;
     margin: 0 auto;
+    border: 0;
 }
 
 #cover img {
@@ -28,10 +29,19 @@ html, body {
     z-index: 2;
 }
 
+#info h1 {
+    font-size: 1.5em;
+    padding-top: 1em;
+    padding-bottom: .5em;
+}
+
+#info p {
+    font-size: 1em;
+}
+
 #lrc {
     width: 100%;
     height: 40%;
-    background-color: pink;
 }
 
 #action {
