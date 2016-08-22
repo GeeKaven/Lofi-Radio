@@ -5,6 +5,7 @@ var cover = document.querySelector('#cover');
 var play = document.querySelector("#play");
 var next = document.querySelector('#next');
 var played = document.querySelector('#played');
+var progress = document.querySelector('.progress');
 
 
 var _get = function (url, callback) {
@@ -72,6 +73,11 @@ play.addEventListener('click', function(e) {
 next.addEventListener('click', function(e) {
     next_music();
 })
+
+progress.addEventListener('mousedown', function(e) {
+    nAudio.currentTime = (e.clientX / progress.offsetWidth) * nAudio.duration;
+})
+
 
 window.onload = function () {
     reset_cover();
