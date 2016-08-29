@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" style="width:0;height:0;position:absolute;overflow:hidden;">
+  <defs>
+<symbol viewBox="0 0 1472 1558" aria-labelledby="bhsi-awesome-arrow-left-title" id="si-awesome-arrow-left"><title id="bhsi-awesome-arrow-left-title">icon arrow-left</title><path d="M1472 715v128q0 53-32.5 90.5T1355 971H651l293 294q38 36 38 90t-38 90l-75 76q-37 37-90 37-52 0-91-37L37 869Q0 832 0 779q0-52 37-91L688 38q38-38 91-38 52 0 90 38l75 74q38 38 38 91t-38 91L651 587h704q52 0 84.5 37.5T1472 715z"/></symbol>
+<symbol viewBox="0 0 1472 1558" aria-labelledby="bisi-awesome-arrow-right-title" id="si-awesome-arrow-right"><title id="bisi-awesome-arrow-right-title">icon arrow-right</title><path d="M1472 779q0 54-37 91l-651 651q-39 37-91 37-51 0-90-37l-75-75q-38-38-38-91t38-91l293-293H117q-52 0-84.5-37.5T0 843V715q0-53 32.5-90.5T117 587h704L528 293q-38-36-38-90t38-90l75-75q38-38 90-38 53 0 91 38l651 651q37 35 37 90z"/></symbol>
+<symbol viewBox="0 0 1536 1536" aria-labelledby="qcsi-awesome-pause-title" id="si-awesome-pause"><title id="qcsi-awesome-pause-title">icon pause</title><path d="M1536 64v1408q0 26-19 45t-45 19H960q-26 0-45-19t-19-45V64q0-26 19-45t45-19h512q26 0 45 19t19 45zm-896 0v1408q0 26-19 45t-45 19H64q-26 0-45-19t-19-45V64q0-26 19-45T64 0h512q26 0 45 19t19 45z"/></symbol>
+<symbol viewBox="0 0 1407 1557.3333740234375" aria-labelledby="qusi-awesome-play-title" id="si-awesome-play"><title id="qusi-awesome-play-title">icon play</title><path d="M1384 809.667l-1328 738q-23 13-39.5 3t-16.5-36v-1472q0-26 16.5-36t39.5 3l1328 738q23 13 23 31t-23 31z"/></symbol>
+  </defs>
+</svg>

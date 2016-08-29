@@ -48,6 +48,10 @@ html, body {
     margin: auto;
 }
 
+#action span {
+    margin: 1em;
+}
+
 .progress {
     position: absolute;
     top: 0;

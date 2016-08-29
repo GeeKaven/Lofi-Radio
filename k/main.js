@@ -44,10 +44,16 @@ var next_music = function () {
 var toggle = function () {
     if (nAudio.paused) {
         nAudio.play();
-        play.innerHTML = "暂停";
+        play.innerHTML = `
+        <svg viewBox="0 0 32 32" width="32" height="32">
+            <use xlink:href="k/i/icon-sprite.svg#si-awesome-pause"></use></svg>
+        </svg>`;
     } else {
         nAudio.pause();
-        play.innerHTML = "播放";
+        play.innerHTML = `
+        <svg viewBox="0 0 32 32" width="32" height="32">
+            <use xlink:href="k/i/icon-sprite.svg#si-awesome-play"></use></svg>
+        </svg>`;
     }
 }
 
