@@ -71,8 +71,8 @@ html, body {
 }
 
 #loaded {
-    border-radius: 5px;
-    background: rgba(120, 120, 120, 0.1);
+    border-radius: 10em;
+    background: rgb(240, 240, 240);;
 }
 
 #played {
