@@ -19,16 +19,24 @@ const header = {
     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/35.0.1916.157 Safari/537.36'
 }
 
-function fetch(url, data, callback) {
-    let req;
-    req = request.post(url).send(data);
-    req.set('Cookie', COOKIE);
-    req.set(header).timeout(5000).end(callback);
+function fetch(url, data) {
+
+    return new Promise((resolve, reject) => {
+        request
+            .post(url)
+            .send(data)
+            .set('Cookie', COOKIE)
+            .set(header)
+            .timeout(5000)
+            .end((error, res) => {
+                error ? reject(error) : resolve(res);
+            })
+    })
 }
 
 function addPadding(encText, modulus) {
     let ml = modulus.length;
-    for (i = 0; ml > 0 && modulus[i] == '0'; i++)ml--;
+    for (let i = 0; ml > 0 && modulus[i] == '0'; i++)ml--;
     let num = ml - encText.length, prefix = '';
     for (let i = 0; i < num; i++) {
         prefix += '0';
@@ -86,52 +94,52 @@ function rsaEncrypt(secKey) {
 }
 
 let CloudMusicAPI = {
-    getDetail : function(songId, callback) {
+    getDetail : function(songId) {
         let url = "http://music.163.com/weapi/v3/song/detail?csrf_token="
         let data = {
             'c' : JSON.stringify({'id':songId}),
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    getPlayList : function(playListId, callback) {
+    getPlayList : function(playListId) {
         let url = "http://music.163.com/weapi/v3/playlist/detail?csrf_token="
         let data = {
             'id' : playListId,
             'n' : 1000,
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    getArtist : function(artistId, callback) {
+    getArtist : function(artistId) {
         let url = 'http://music.163.com/weapi/v1/artist/' + $artist_id + '?csrf_token='
         let data = {
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    getAlbum : function(albumId, callback) {
+    getAlbum : function(albumId) {
         let url = 'http://music.163.com/weapi/v1/album/' + $album_id + '?csrf_token=';
         let data = {
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    getUrl : function(songId, br = 999000, callback) {
+    getUrl : function(songId, br = 999000) {
         let url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
         let data = {
             'ids' : songId,
             'br' : br,
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    getLyric : function(songId, callback) {
+    getLyric : function(songId) {
         let url = 'http://music.163.com/weapi/song/lyric?csrf_token='
         let data = {
             'id' : songId,
@@ -141,19 +149,19 @@ let CloudMusicAPI = {
             'tv' : -1,
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    getMv : function(mvId, callback) {
+    getMv : function(mvId) {
         let url = 'http://music.163.com/weapi/mv/detail?csrf_token='
         let data = {
             'id' : mvId,
             'csrf_token' : '',
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     },
 
-    search : function(search, limit=30, offset=0, type=1, callback) {
+    search : function(search, limit=30, offset=0, type=1) {
         let url = 'http://music.163.com/weapi/cloudsearch/get/web?csrf_token='
         let data = {
             's' : search,
@@ -163,7 +171,7 @@ let CloudMusicAPI = {
             'offset' : offset,
             'csrf_token' : ''
         }
-        fetch(url, encrypt(data), callback)
+        return fetch(url, encrypt(data))
     }
 }
 
