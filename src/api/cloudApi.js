@@ -7,6 +7,7 @@ const NONCE = '0CoJUm6Qyw8W8jud'
 const PUBKEY = '010001'
 const VI = '0102030405060708'
 const COOKIE = 'os=pc; osver=Microsoft-Windows-10-Professional-build-10586-64bit; appver=2.0.3.131777; channel=netease; __remember_me=true'
+const MAGIC_KEY = '3go8&$8*3*3h0k(2)2'
 
 const header = {
     'Accept': '*/*',
@@ -93,11 +94,38 @@ function rsaEncrypt(secKey) {
     return addPadding(biRet.toString(radix), MODULE);
 }
 
+function id2Url(pic_str) {
+    let magic = str2Arr(MAGIC_KEY)
+    let songId = str2Arr(pic_str)
+    for (let i = 0; i < songId.length; i++) {
+        songId[i] = songId[i]^magic[i%magic.length]
+    }
+    let md5 = crypto.createHash('md5')
+    let res = md5.update(arr2Str(songId)).digest('base64')
+    return res.replace(/\/|\+/g, '_')
+}
+
+function str2Arr(str) {
+    let bytes = []
+    for (let i = 0; i < str.length; i++) {
+        bytes.push(str.charAt(i).charCodeAt(0))
+    }
+    return bytes
+}
+
+function arr2Str(bytes) {
+    let str = ''
+    for (let i = 0; i < bytes.length; i++) {
+        str += String.fromCharCode(bytes[i])
+    }
+    return str
+}
+
 let CloudMusicAPI = {
     getDetail : function(songId) {
         let url = "http://music.163.com/weapi/v3/song/detail?csrf_token="
         let data = {
-            'c' : JSON.stringify({'id':songId}),
+            'c' : JSON.stringify([{'id':songId}]),
             'csrf_token' : ''
         }
         return fetch(url, encrypt(data))
@@ -114,7 +142,7 @@ let CloudMusicAPI = {
     },
 
     getArtist : function(artistId) {
-        let url = 'http://music.163.com/weapi/v1/artist/' + $artist_id + '?csrf_token='
+        let url = 'http://music.163.com/weapi/v1/artist/' + artistId + '?csrf_token='
         let data = {
             'csrf_token' : ''
         }
@@ -122,7 +150,7 @@ let CloudMusicAPI = {
     },
 
     getAlbum : function(albumId) {
-        let url = 'http://music.163.com/weapi/v1/album/' + $album_id + '?csrf_token=';
+        let url = 'http://music.163.com/weapi/v1/album/' + albumId + '?csrf_token=';
         let data = {
             'csrf_token' : ''
         }
@@ -131,6 +159,9 @@ let CloudMusicAPI = {
 
     getUrl : function(songId, br = 999000) {
         let url = 'http://music.163.com/weapi/song/enhance/player/url?csrf_token='
+        if (!Array.isArray(songId)) {
+            songId = [songId]
+        }
         let data = {
             'ids' : songId,
             'br' : br,
@@ -172,6 +203,10 @@ let CloudMusicAPI = {
             'csrf_token' : ''
         }
         return fetch(url, encrypt(data))
+    },
+    
+    pic2Url : function (pic_str) {
+        return "http://p3.music.126.net/" + id2Url(pic_str) + "/" + pic_str + ".jpg"
     }
 }
 
