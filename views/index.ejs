@@ -1,50 +1,11 @@
 <!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="stylesheets/reset.css">
-    <link rel="stylesheet" href="stylesheets/style.css">
-    <title>Neko. 电台</title>
-</head>
-<body>
-    <div id="wapper">
-        <div id="player">
-            <div id="cover">
-                <img src="">
-            </div>
-            <div id="info">
-                <h1></h1>
-                <p></p>
-            </div>
-            <div id="lrc">
-
-            </div>
-            <div id="action">
-                <span id="list">
-                    <svg viewBox="0 0 32 32" width="32" height="32">
-                        <use xlink:href="images/icon-sprite.svg#si-awesome-list"></use></svg>
-                    </svg>
-                </span>
-                <span id="play">
-                    <svg viewBox="0 0 32 32" width="32" height="32">
-                        <use xlink:href="images/icon-sprite.svg#si-awesome-play"></use></svg>
-                    </svg>
-                </span>
-                <span id="next">
-                    <svg viewBox="0 0 32 32" width="32" height="32">
-                        <use xlink:href="images/icon-sprite.svg#si-awesome-arrow-right"></use></svg>
-                    </svg>
-                </span>
-            </div>
-        </div>
-        <div class="progress">
-            <div id="loaded"></div>
-            <div id="played"></div>
-        </div>
-    </div>
-    <audio id="song">
-
-    </audio>
-    <script src="javascripts/main.js" charset="utf-8"></script>
-</body>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/static/stylesheets/style.css' />
+  </head>
+  <body>
+    <h1><%= title %></h1>
+    <p>EJS Welcome to <%= title %></p>
+  </body>
 </html>

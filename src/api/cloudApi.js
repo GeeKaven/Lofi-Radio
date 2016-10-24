@@ -81,7 +81,7 @@ function aesEncrypt(data, secKey) {
 }
 
 function rsaEncrypt(secKey) {
-    let rText = '', 
+    let rText = '',
         radix = 16;
     for (let i = secKey.length - 1; i >= 0; i--) {
         rText += secKey[i];

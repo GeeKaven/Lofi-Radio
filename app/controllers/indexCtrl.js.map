@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../src/controllers/indexCtrl.js"],"names":["ctx","next","render","title"],"mappings":";AACe,mBAAOA,GAAP,EAAYC,IAAZ;;AAEPD,kBAAIE,MAAJ,CAAW,OAAX,EAAoB;AACxBC,uBAAQ,OADgB,EAApB,CAFO,qE","file":"indexCtrl.js","sourcesContent":["\nexport default async (ctx, next) => {\n\n  await ctx.render('index', {\n    title : \"Hello\"\n  })\n}\n"]}
