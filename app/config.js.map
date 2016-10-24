@@ -1,1 +1,0 @@
-{"version":3,"sources":["../src/config.js"],"names":["port"],"mappings":"yDAAe;AACbA,QAAM,IADO,E","file":"config.js","sourcesContent":["export default {\n  port: 3000\n}"]}
