@@ -1,2 +1,5 @@
 node_modules/
 .idea/
+public/music/*
+app/
+npm-debug.log

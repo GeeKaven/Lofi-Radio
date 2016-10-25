@@ -9,5 +9,6 @@ router
     .get('/api/buildList', musicCtrl.buildList)
     .get('/api/getMusic', musicCtrl.getMusic)
     .get('/api/getPlayList', musicCtrl.getPlayList)
+    .get('/api/getUrl', musicCtrl.getUrl)
 
 export default router

@@ -8,7 +8,9 @@ const listPath = path.join(__dirname, "../../public/music")
 
 export default {
     getRandomMusic : async (ctx, next) => {
-        
+        let type = ctx.query['type'] ? ctx.query['type'] : 'all'
+        let filePath = path.join(listPath, type + ".json")
+        let list = JSON.parse(fs.readFileSync(filePath))
     },
 
     buildList: async (ctx, next) => {
@@ -24,7 +26,7 @@ export default {
                 })
                 let filePath = path.join(listPath, item["type"] + ".json")
                 fs.writeFileSync(filePath, JSON.stringify(list))
-                all.push(list)
+                all = all.concat(list)
             }
             fs.writeFileSync(path.join(listPath, "all.json"), JSON.stringify(all))
             ctx.body = JSON.stringify(all)
@@ -35,14 +37,20 @@ export default {
     },
 
     getMusic: async (ctx, next) => {
-        const query = ctx.query
-        let detail = await api.getDetail(query['songId'])
-        console.log(detail.text)
+        const songId = ctx.query['songId']
+        let detail = await api.getDetail(songId)
+        ctx.body = detail.text
     },
 
     getPlayList: async (ctx, next) => {
-        const  query = ctx.query
+        const query = ctx.query
         let playList = await api.getPlayList(query['playList'])
         ctx.body = playList.text;
+    },
+
+    getUrl: async (ctx, next) => {
+        const songId = ctx.query['songId']
+        let url = await api.getUrl(songId)
+        ctx.body = url.text;
     }
 }
