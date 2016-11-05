@@ -6,11 +6,34 @@ const config = require('../../fm.json')
 
 const listPath = path.join(__dirname, "../../public/music")
 
+async function buildMusic(songId) {
+    let detail = await api.getDetail(songId)
+    let detailObj = JSON.parse(detail.text)['songs'][0]
+    let result = {}
+    result['articles'] = ''
+    detailObj['ar'].forEach(e => {
+        result['articles'] += e['name']
+    })
+    result['song'] = detailObj['name']
+    result['album_name'] = detailObj['al']['name']
+    result['album_url'] = await api.pic2Url(detailObj['al']['pic_str'])
+    let songUrl = await api.getUrl(songId)
+    result['mp3'] = JSON.parse(songUrl.text)['data'][0]["url"]
+
+    return result;
+}
+
 export default {
-    getRandomMusic : async (ctx, next) => {
+    getRandom : async (ctx, next) => {
         let type = ctx.query['type'] ? ctx.query['type'] : 'all'
         let filePath = path.join(listPath, type + ".json")
         let list = JSON.parse(fs.readFileSync(filePath))
+        let random = Math.floor(Math.random() * list.length)
+        console.log(random)
+        console.log(list[random])
+        let result = await buildMusic(list[random])
+        console.log(result)
+        ctx.body = JSON.stringify(result)
     },
 
     buildList: async (ctx, next) => {
@@ -38,8 +61,8 @@ export default {
 
     getMusic: async (ctx, next) => {
         const songId = ctx.query['songId']
-        let detail = await api.getDetail(songId)
-        ctx.body = detail.text
+        let result = await buildMusic(songId)
+        ctx.body = JSON.stringify(result)
     },
 
     getPlayList: async (ctx, next) => {

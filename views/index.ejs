@@ -1,11 +1,33 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/static/stylesheets/style.css' />
+      <title><%= title %> - <%= desc %></title>
+      <meta name="keywords" content="<%= title %>">
+      <meta name="description" content="<%= desc %>">
+      <link rel="stylesheet" href="http://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel='stylesheet' href='/static/css/style.css' />
   </head>
   <body>
-    <h1><%= title %></h1>
-    <p>EJS Welcome to <%= title %></p>
+    <div id="main">
+        <div id="backgd"></div>
+        <div id="progress">
+            <div class="played"></div>
+            <div class="loaded"></div>
+        </div>
+        <div id="topic">
+            <div id="album">
+                <div class="cover">
+                    <img src="http://p3.music.126.net/LfqhRomeVUZYRhLzWEAHxQ==/944480488259856.jpg?param=360y360" alt="">
+                </div>
+                <div class="toggle"></div>
+            </div>
+            <div id="info">
+                <div class="title">「标题」</div>
+                <div class="article">歌手</div>
+            </div>
+        </div>
+    </div>
+    <script src="http://cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
+    <script src="/static/js/app.js"></script>
   </body>
 </html>

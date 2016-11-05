@@ -10,5 +10,6 @@ router
     .get('/api/getMusic', musicCtrl.getMusic)
     .get('/api/getPlayList', musicCtrl.getPlayList)
     .get('/api/getUrl', musicCtrl.getUrl)
+    .get('/api/random', musicCtrl.getRandom)
 
 export default router
