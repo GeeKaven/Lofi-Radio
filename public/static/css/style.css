@@ -4,7 +4,16 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-#backgd {
+ul, li {
+  list-style: none;
+}
+
+img {
+  vertical-align: middle;
+  border: none;
+}
+
+#background {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,6 +23,8 @@ body {
   background-size: cover;
   z-index: -1;
 }
+
+
 
 #topic {
   padding-top: 10%;
@@ -39,6 +50,7 @@ body {
   margin-top: 4em;
   margin-bottom: 4em;
   text-align: center;
+  color: #fff;
 }
 
 #info .title {

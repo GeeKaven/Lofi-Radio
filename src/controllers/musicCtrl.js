@@ -10,9 +10,9 @@ async function buildMusic(songId) {
     let detail = await api.getDetail(songId)
     let detailObj = JSON.parse(detail.text)['songs'][0]
     let result = {}
-    result['articles'] = ''
+    result['articles'] = []
     detailObj['ar'].forEach(e => {
-        result['articles'] += e['name']
+        result['articles'].push(e['name'])
     })
     result['song'] = detailObj['name']
     result['album_name'] = detailObj['al']['name']
@@ -23,16 +23,29 @@ async function buildMusic(songId) {
     return result;
 }
 
+function shuffle(playList) {
+    let result = []
+    let len = playList.length
+    while (len > 0) {
+        let randomIndex = Math.floor(Math.random() * len)
+        result.push(playList[randomIndex])
+        playList[randomIndex] = playList[--len];
+    }
+    return result
+}
+
 export default {
     getRandom : async (ctx, next) => {
         let type = ctx.query['type'] ? ctx.query['type'] : 'all'
         let filePath = path.join(listPath, type + ".json")
         let list = JSON.parse(fs.readFileSync(filePath))
-        let random = Math.floor(Math.random() * list.length)
-        console.log(random)
-        console.log(list[random])
-        let result = await buildMusic(list[random])
-        console.log(result)
+        console.log(list)
+        let shuffleList = shuffle(list)
+        console.log(shuffleList)
+        let result = {
+            'play_list' : shuffleList
+        }
+
         ctx.body = JSON.stringify(result)
     },
 
