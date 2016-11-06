@@ -102,7 +102,7 @@ function id2Url(pic_str) {
     }
     let md5 = crypto.createHash('md5')
     let res = md5.update(arr2Str(songId)).digest('base64')
-    return res.replace(/\/|\+/g, '_')
+    return res.replace(/\/|\+/g, '-')
 }
 
 function str2Arr(str) {
