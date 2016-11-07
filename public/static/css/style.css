@@ -13,6 +13,11 @@ img {
   border: none;
 }
 
+a {
+  outline-width: 0;
+  text-decoration: none;
+}
+
 #background {
   position: fixed;
   top: 0;
@@ -24,6 +29,31 @@ img {
   z-index: -1;
 }
 
+#controll {
+  position: fixed;
+  top: 0;
+  right: 0;
+  margin: 2.5em;
+}
+
+#controll .item {
+  display: table;
+  width: 4em;
+  height: 4em;
+  background-color: #000;
+  margin-bottom: 1em;
+  opacity: 0.5;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+#controll > .item > .fa {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+  font-size: 2em;
+  color: #fff;
+}
 
 
 #topic {
@@ -46,6 +76,11 @@ img {
   border-radius: 50%;
 }
 
+#album .cover img {
+  max-width: 100%;
+  width: 100%;
+}
+
 #info {
   margin-top: 4em;
   margin-bottom: 4em;
@@ -56,6 +91,20 @@ img {
 #info .title {
   font-size: 1.5em;
   margin-bottom: 1em;
+}
+
+#info .title::before {
+  content: "「";
+  position: relative;
+  top: -0.5em;
+  left: -0.5em;
+}
+
+#info .title::after {
+  content: "」";
+  position: relative;
+  bottom: -0.5em;
+  right: -0.5em;
 }
 
 #info .article {
@@ -76,12 +125,12 @@ img {
      top: 0;
      left: 0;
      height: 100%;
-     min-width: 4px;
+     min-width: .5em;
      max-width: 100%;
  }
 
 #progress .loaded {
-     border-radius: 5px;
+     border-radius: 10em;
      background: rgba(120, 120, 120, 0.1);
  }
 

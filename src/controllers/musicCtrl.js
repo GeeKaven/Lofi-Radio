@@ -39,9 +39,7 @@ export default {
         let type = ctx.query['type'] ? ctx.query['type'] : 'all'
         let filePath = path.join(listPath, type + ".json")
         let list = JSON.parse(fs.readFileSync(filePath))
-        console.log(list)
         let shuffleList = shuffle(list)
-        console.log(shuffleList)
         let result = {
             'play_list' : shuffleList
         }

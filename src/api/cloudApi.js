@@ -104,7 +104,6 @@ function id2Url(pic_str) {
     let res = md5.update(arr2Str(songId)).digest('base64')
     res = res.replace(/\//g, '_')
     res = res.replace(/\+/, '-')
-    console.log(res)
     return res
 }
 

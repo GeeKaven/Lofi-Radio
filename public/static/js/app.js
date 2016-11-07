@@ -45,7 +45,7 @@ $(document).ready(function() {
     }
 
     function _render(data) {
-        title.text("「" + data['song'] + ' - ' + data['album_name'] + "」");
+        title.text(data['song'] + ' - ' + data['album_name']);
         article.text(data['articles'].join(' / '));
         coverImg.attr('src', data['album_url'] + size);
         audio.src = data['mp3'];
@@ -78,6 +78,19 @@ $(document).ready(function() {
             console.log("Fetch Error !!");
         }
     });
+
+    $(".home").click(function(e) {
+        window.open("http://xiaok.me");
+    });
+
+    $(".source").click(function(e) {
+        window.open("https://github.com/GeeKaven/NekoFM");
+    });
+
+    $(".next").click(function(e) {
+        _next();
+    })
+
 
     function _load() {
         audio.autoplay = true;
