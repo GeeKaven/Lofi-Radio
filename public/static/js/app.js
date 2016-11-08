@@ -2,9 +2,8 @@ $(document).ready(function() {
 
     var audio = new Audio();
     var played = $(".played");
-    var loaded = $(".loaded");
-    var cover = $("#album > .cover")
-    var coverImg = $("#album > .cover > img")
+    var cover = document.querySelector("#album > .cover");
+    var coverImg = $("#album > .cover > img");
     var title = $("#info > .title");
     var article = $("#info > .article");
     var toggle = $("#album > .toggle");
@@ -49,30 +48,17 @@ $(document).ready(function() {
         article.text(data['articles'].join(' / '));
         coverImg.attr('src', data['album_url'] + size);
         audio.src = data['mp3'];
+        cover.dataset.state = 'running';
+        $(".toggle i").removeClass("fa-play").addClass("fa-pause");
     }
 
     $(audio).on({
         'ended': function() {
             _next();
         },
-        'playing': function() {
-
-        },
-        'pause': function() {
-
-        },
         'timeupdate': function() {
             var rate = (audio.currentTime / audio.duration) * 100;
             played.attr('style', 'width:' + rate + '%');
-        },
-        'progress': function() {
-            if (audio.buffered.length > 0) {
-                var bufferedEnd = audio.buffered.end(audio.buffered.length - 1);
-                var rate = (bufferedEnd / audio.duration) * 100;
-                if (audio.duration > 0) {
-                    loaded.attr('style', 'width:' + rate + '%');
-                }
-            }
         },
         'error': function() {
             console.log("Fetch Error !!");
@@ -89,6 +75,18 @@ $(document).ready(function() {
 
     $(".next").click(function(e) {
         _next();
+    })
+
+    $(".toggle").click(function(e) {
+        if (audio.paused) {
+            audio.play();
+            cover.dataset.state = 'running';
+            $(".toggle i").removeClass("fa-play").addClass("fa-pause");
+        } else {
+            audio.pause();
+            cover.dataset.state = 'paused';
+            $(".toggle i").removeClass("fa-pause").addClass("fa-play");
+        }
     })
 
 

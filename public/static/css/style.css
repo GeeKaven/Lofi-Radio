@@ -40,19 +40,22 @@ a {
   display: table;
   width: 4em;
   height: 4em;
-  background-color: #000;
+  background-color: rgba(0, 0, 0, 0.5);
   margin-bottom: 1em;
-  opacity: 0.5;
   border-radius: 50%;
   cursor: pointer;
 }
 
-#controll > .item > .fa {
+#controll .item  .fa {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
   font-size: 2em;
   color: #fff;
+}
+
+#controll .item  .fa:hover {
+  opacity: 0.8;
 }
 
 
@@ -74,11 +77,54 @@ a {
   height: 0;
   overflow: hidden;
   border-radius: 50%;
+  animation: cover-spin infinite 20s linear;
+}
+
+#album .cover[data-state="paused"] {
+  animation-play-state: paused;
+}
+
+#album .cover[data-state="running"] {
+  animation-play-state: running;
 }
 
 #album .cover img {
   max-width: 100%;
   width: 100%;
+}
+
+#album .toggle {
+  position: absolute;
+  text-align: center;
+  max-width: 100%;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  border-radius: 50%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+  opacity: 0;
+  cursor: pointer;
+  transition: opacity 0.5s;
+}
+
+#album .toggle .fa {
+  vertical-align: middle;
+  text-align: center;
+  font-size: 3em;
+  color: #fff;
+}
+
+#album .toggle::after {
+    content: "";
+    display: inline-block;
+    vertical-align: middle;
+    min-height: 100%;
+}
+
+#album .toggle:hover {
+  opacity: 1;
 }
 
 #info {
@@ -127,15 +173,15 @@ a {
      height: 100%;
      min-width: .5em;
      max-width: 100%;
- }
-
-#progress .loaded {
-     border-radius: 10em;
-     background: rgba(120, 120, 120, 0.1);
- }
+}
 
 #progress .played {
      box-shadow: -1px -1px 0 rgba(0, 0, 255, 0.2) inset;
      border-radius: 10em;
      background: red;
  }
+
+ @keyframes cover-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

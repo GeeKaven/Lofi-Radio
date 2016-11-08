@@ -103,7 +103,7 @@ function id2Url(pic_str) {
     let md5 = crypto.createHash('md5')
     let res = md5.update(arr2Str(songId)).digest('base64')
     res = res.replace(/\//g, '_')
-    res = res.replace(/\+/, '-')
+    res = res.replace(/\+/g, '-')
     return res
 }
 
@@ -206,7 +206,7 @@ let CloudMusicAPI = {
         }
         return fetch(url, encrypt(data))
     },
-    
+
     pic2Url : function (pic_str) {
         return "http://p3.music.126.net/" + id2Url(pic_str) + "/" + pic_str + ".jpg"
     }
