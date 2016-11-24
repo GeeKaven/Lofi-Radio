@@ -14,10 +14,8 @@ $(document).ready(function() {
 
     function _getList() {
         $.getJSON("/api/random", function(data) {
-            console.log(data["play_list"]);
             index = 0;
             playList = data["play_list"];
-            console.log(playList);
             _getMusic();
         })
     }
@@ -25,7 +23,6 @@ $(document).ready(function() {
     function _getMusic() {
         var songId = playList[index];
         $.getJSON("/api/getMusic?songId=" + songId, function(data) {
-            console.log(data);
             if (typeof data['mp3'] == 'undefined') {
                 _next();
             } else {
